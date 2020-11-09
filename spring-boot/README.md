@@ -2,7 +2,7 @@
 
 **These Java examples cover Spring Boot.**
 
-<img src="https://github.com/joseosuna-engineer/java-utils/blob/spring-boot/spring-boot/spring-boot.png" align="right"  width="300" />
+<img src="https://github.com/joseosuna-engineer/java-utils/blob/main/spring-boot/spring-boot.png" align="right"  width="300" />
 
 Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run". <br />
 
