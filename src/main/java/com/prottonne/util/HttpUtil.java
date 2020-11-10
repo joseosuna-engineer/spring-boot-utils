@@ -30,17 +30,16 @@ public class HttpUtil {
                 return NOT_OK;
             }
 
-            final String str = httpUtilUrl + "?" + paramName + "=" + paramValue;
-            logger.info("check fullUrl {}", str);
+            final String fullUrl = httpUtilUrl + "?" + paramName + "=" + paramValue;
+            logger.info("check fullUrl {}", fullUrl);
 
             String urlWhiteListed = "https://jsonplaceholder.typicode.com/";
-
-            if (!str.startsWith(urlWhiteListed)) {
+            String str = fullUrl;
+            if (!str.startsWith(urlWhiteListed)) 
                 throw new IOException();
-            }
 
             URL url2 = new URL(str);
-            HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+            HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection(); 
 
             conn2.setRequestMethod(RequestMethod.GET.name());
             conn2.connect();
