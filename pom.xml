@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.prottonne</groupId>
-    <artifactId>spring-boot-url</artifactId>
+    <artifactId>spring-boot-utils</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-url</name>
-    <description>Spring Boot client that call URLs</description>
+    <name>spring-boot-utils</name>
+    <description>Spring Boot client utils</description>
 
     <properties>
         <java.version>11</java.version>
