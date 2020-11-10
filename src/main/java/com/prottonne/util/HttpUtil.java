@@ -24,8 +24,6 @@ public class HttpUtil {
 
     protected String get(String paramName, Integer paramValue) {
 
-        HttpURLConnection conn2 = null;
-
         try {
             if (0 == paramValue) {
                 logger.info("Not Ok, paramValue={}", paramValue);
@@ -42,7 +40,7 @@ public class HttpUtil {
             }
 
             URL url2 = new URL(str);
-            conn2 = (HttpURLConnection) url2.openConnection();
+            HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
 
             conn2.setRequestMethod(RequestMethod.GET.name());
             conn2.connect();
@@ -61,10 +59,6 @@ public class HttpUtil {
             logger.error(NOT_OK, ex);
         } catch (IOException ex) {
             logger.error(NOT_OK, ex);
-        } finally {
-            if (null != conn2) {
-                conn2.disconnect();
-            }
         }
 
         logger.info(NOT_OK);
