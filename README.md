@@ -36,7 +36,7 @@ You can use Spring Boot to create stand-alone Java applications that can be star
 
 ## Examples
 
-### String HttpUtil.get(String paramName, String paramValue)
+- ### String HttpUtil.get(String paramName, String paramValue)
 
 Returns **Ok** when Http Response Code is 200 as a result of GET http.util.url?param=value <br />
 Feel free to change **http.util.url** in application.properties <br />
@@ -49,6 +49,6 @@ Answer **Ok**
 
 ```curl localhost:5151/get/postId/0```
 
-**Not Ok** <br />
+Answer **Not Ok** <br />
 
 
