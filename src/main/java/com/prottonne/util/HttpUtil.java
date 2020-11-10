@@ -24,7 +24,7 @@ public class HttpUtil {
 
     protected String get(String paramName, Integer paramValue) {
 
-        HttpURLConnection connection = null;
+        HttpURLConnection conn2 = null;
 
         try {
             if (0 == paramValue) {
@@ -32,23 +32,22 @@ public class HttpUtil {
                 return NOT_OK;
             }
 
-            final String fullUrl = httpUtilUrl + "?" + paramName + "=" + paramValue;
-            logger.info("check fullUrl {}", fullUrl);
+            final String str = httpUtilUrl + "?" + paramName + "=" + paramValue;
+            logger.info("check fullUrl {}", str);
 
-            String urlWhiteListed = "https://";
+            String urlWhiteListed = "https://jsonplaceholder.typicode.com/";
 
-            if (!fullUrl.startsWith(urlWhiteListed)) {
+            if (!str.startsWith(urlWhiteListed)) {
                 throw new IOException();
             }
 
-            URL url = new URL(fullUrl);
-            logger.info("check path {}", url.getPath());
+            URL url2 = new URL(str);
+            conn2 = (HttpURLConnection) url2.openConnection();
 
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod(RequestMethod.GET.name());
-            connection.connect();
+            conn2.setRequestMethod(RequestMethod.GET.name());
+            conn2.connect();
 
-            if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
+            if (HttpURLConnection.HTTP_OK == conn2.getResponseCode()) {
 
                 logger.info(OK);
                 return OK;
@@ -63,8 +62,8 @@ public class HttpUtil {
         } catch (IOException ex) {
             logger.error(NOT_OK, ex);
         } finally {
-            if (null != connection) {
-                connection.disconnect();
+            if (null != conn2) {
+                conn2.disconnect();
             }
         }
 
