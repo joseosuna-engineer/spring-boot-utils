@@ -1,9 +1,6 @@
 package com.prottonne.util;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,15 +16,17 @@ public class HttpUtil {
     @Value("${http.util.url}")
     private String httpUtilUrl;
 
-    protected String get(String paramName, Integer paramValue) {
+    private static final String OK = "Ok";
+    private static final String NOT_OK = "Not Ok";
+
+    protected String get() {
+
+        final String paramName = "postId";
+        final Integer paramValue = 1;
 
         HttpURLConnection connection = null;
 
         try {
-            if (0 == paramValue) {
-                logger.info("Not Ok, paramValue={}", paramValue);
-                return "Not Ok";
-            }
 
             final String fullUrl = httpUtilUrl + "?" + paramName + "=" + paramValue;
             logger.info("check fullUrl {}", fullUrl);
@@ -41,28 +40,24 @@ public class HttpUtil {
 
             if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
 
-                logger.info("Ok");
-                return "Ok";
+                logger.info(OK);
+                return OK;
 
             } else {
 
-                logger.info("Not Ok");
-                return "Not Ok";
+                logger.info(NOT_OK);
+                return NOT_OK;
             }
-        } catch (MalformedURLException ex) {
-            logger.error("Not Ok", ex);
-        } catch (ProtocolException ex) {
-            logger.error("Not Ok", ex);
-        } catch (IOException ex) {
-            logger.error("Not Ok", ex);
+        } catch (Exception ex) {
+            logger.error(NOT_OK, ex);
         } finally {
             if (null != connection) {
                 connection.disconnect();
             }
         }
 
-        logger.info("Not Ok");
-        return "Not Ok";
+        logger.info(NOT_OK);
+        return NOT_OK;
 
     }
 
