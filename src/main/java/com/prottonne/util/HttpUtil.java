@@ -1,5 +1,9 @@
 package com.prottonne.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -88,7 +92,9 @@ public class HttpUtil {
 
             if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
 
-                byte[] image = IOUtils.toByteArray(connection.getInputStream());
+                InputStream sanitizedIn = sanitizeStream(connection.getInputStream());
+
+                byte[] image = IOUtils.toByteArray(sanitizedIn);
 
                 if (image.length > 0) {
 
@@ -119,6 +125,13 @@ public class HttpUtil {
 
         logger.info(NOT_OK);
 
+    }
+
+    private InputStream sanitizeStream(InputStream input) throws IOException {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        input.transferTo(baos);
+        return new ByteArrayInputStream(baos.toByteArray());
     }
 
 }
