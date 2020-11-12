@@ -45,3 +45,13 @@ Returns **Ok** when Http Response Code is 200 as a result of GET http.util.url?p
 ```curl localhost:5151/get```
 
 Answer **Ok**
+
+- ### String HttpUtil.download(HttpServletResponse)
+
+Returns a binary PNG image as a result of a third party binary download from http.util.photo <br />
+**http.util.photo** is located in application.properties <br />
+  
+#### Testing
+Open a browser a go to
+```localhost:5151/download```
+

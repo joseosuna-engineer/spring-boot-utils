@@ -1,5 +1,6 @@
 package com.prottonne.util;
 
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,15 @@ public class Controller {
     public String get() {
 
         return httpUtil.get();
+    }
+
+    @GetMapping(path = "/download",
+            produces = MediaType.IMAGE_PNG_VALUE
+    )
+    public void download(HttpServletResponse response) {
+
+        httpUtil.download(response);
+
     }
 
 }
