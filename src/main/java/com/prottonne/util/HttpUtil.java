@@ -1,9 +1,6 @@
 package com.prottonne.util;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,11 +49,7 @@ public class HttpUtil {
                 logger.info(NOT_OK);
                 return NOT_OK;
             }
-        } catch (MalformedURLException ex) {
-            logger.error(NOT_OK, ex);
-        } catch (ProtocolException ex) {
-            logger.error(NOT_OK, ex);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             logger.error(NOT_OK, ex);
         } finally {
             if (null != connection) {
