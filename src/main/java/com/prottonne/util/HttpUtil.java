@@ -19,15 +19,14 @@ public class HttpUtil {
     private static final String OK = "Ok";
     private static final String NOT_OK = "Not Ok";
 
-    protected String get(String paramName, Integer paramValue) {
+    protected String get() {
+
+        final String paramName = "postId";
+        final Integer paramValue = 1;
 
         HttpURLConnection connection = null;
 
         try {
-            if (0 == paramValue) {
-                logger.info("Not Ok, paramValue={}", paramValue);
-                return NOT_OK;
-            }
 
             final String fullUrl = httpUtilUrl + "?" + paramName + "=" + paramValue;
             logger.info("check fullUrl {}", fullUrl);
