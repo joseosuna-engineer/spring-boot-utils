@@ -19,6 +19,9 @@ public class HttpUtil {
     @Value("${http.util.url}")
     private String httpUtilUrl;
 
+    private static final String OK = "Ok";
+    private static final String NOT_OK = "Not Ok";
+
     protected String get(String paramName, Integer paramValue) {
 
         HttpURLConnection connection = null;
@@ -26,7 +29,7 @@ public class HttpUtil {
         try {
             if (0 == paramValue) {
                 logger.info("Not Ok, paramValue={}", paramValue);
-                return "Not Ok";
+                return NOT_OK;
             }
 
             final String fullUrl = httpUtilUrl + "?" + paramName + "=" + paramValue;
@@ -41,28 +44,28 @@ public class HttpUtil {
 
             if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
 
-                logger.info("Ok");
-                return "Ok";
+                logger.info(OK);
+                return OK;
 
             } else {
 
-                logger.info("Not Ok");
-                return "Not Ok";
+                logger.info(NOT_OK);
+                return NOT_OK;
             }
         } catch (MalformedURLException ex) {
-            logger.error("Not Ok", ex);
+            logger.error(NOT_OK, ex);
         } catch (ProtocolException ex) {
-            logger.error("Not Ok", ex);
+            logger.error(NOT_OK, ex);
         } catch (IOException ex) {
-            logger.error("Not Ok", ex);
+            logger.error(NOT_OK, ex);
         } finally {
             if (null != connection) {
                 connection.disconnect();
             }
         }
 
-        logger.info("Not Ok");
-        return "Not Ok";
+        logger.info(NOT_OK);
+        return NOT_OK;
 
     }
 
